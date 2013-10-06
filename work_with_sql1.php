@@ -1,23 +1,20 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
  <head>
-  <title> Trabajando con Sql </title>
+  <title> Sincronizando con mysql </title>
  </head>
  <body>
   <?php
-    $db=mysql_connect("localhost","root","");
-    mysql_select_db("famaf", $db);
-    $sql_cod="SELECT * FROM `libro`";
-    $datos=mysql_query($sql_cod, $db);
+    $connection=mysql_connect("localhost", "root", "");
+    mysql_select_db("FaMAF", $connection);
+    $sql_code="SELECT * FROM `Libro`";
+    $datos=mysql_query($sql_code, $connection);
     $row=mysql_fetch_array($datos);
-    foreach ($row as $clave=>$valor) {
+    foreach($row as $clave=>$valor) {
         if (is_string($clave)) {
-            echo "$clave, ";
-            #array_push($campos, $clave);
+            echo "|$clave| ";
         }
     }
-    mysql_close($db);
-  ?>    
+    mysql_close($connection);
+  ?>
  </body>
 </html>
